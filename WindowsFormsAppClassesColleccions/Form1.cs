@@ -46,9 +46,20 @@ namespace WindowsFormsAppClassesColleccions
             return error;
         }
 
+        private void refrescarListaPeliculas()
+        {
+            //Refrescar datos de la listBox de películas
+
+            listBoxPeliculas.DataSource = null;
+            listBoxPeliculas.DisplayMember = "titulo";
+            listBoxPeliculas.ValueMember = "titulo";
+            listBoxPeliculas.DataSource = peliculas;
+        }
+
         private void buttonAnyadir_Click(object sender, EventArgs e)
         {
-            if (!errorDatos())
+
+            if (!errorDatos()) 
             {
                 //Crear película
                 Pelicula peli = new Pelicula();
@@ -60,13 +71,7 @@ namespace WindowsFormsAppClassesColleccions
                 if (!peliculas.Contains(peli))
                 {
                     peliculas.Add(peli);
-
-                    //Refrescar datos de la listBox de películas
-
-                    listBoxPeliculas.DataSource = null;
-                    listBoxPeliculas.DisplayMember = "titulo";
-                    listBoxPeliculas.ValueMember = "titulo";
-                    listBoxPeliculas.DataSource = peliculas;
+                    refrescarListaPeliculas();
                 }
                 else
                 {
